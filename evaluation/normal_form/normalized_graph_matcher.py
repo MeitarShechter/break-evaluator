@@ -6,13 +6,13 @@ import logging
 import re
 import spacy
 
-from  evaluation.decomposition import Decomposition, draw_decomposition_graph
-from utils.graph import get_graph_levels
+from break_evaluator.evaluation.decomposition import Decomposition, draw_decomposition_graph
+from break_evaluator.utils.graph import get_graph_levels
 
-from evaluation.normal_form.normalization_rules import prepare_node
-import evaluation.normal_form.normalization_rules as norm_rules
-import evaluation.normal_form.operations_normalization_rules as op_norm_rules
-from scripts.qdmr_to_program import QDMROperation
+from break_evaluator.evaluation.normal_form.normalization_rules import prepare_node
+import break_evaluator.evaluation.normal_form.normalization_rules as norm_rules
+import break_evaluator.evaluation.normal_form.operations_normalization_rules as op_norm_rules
+from break_evaluator.scripts.qdmr_to_program import QDMROperation
 
 
 _logger = logging.getLogger(__name__)

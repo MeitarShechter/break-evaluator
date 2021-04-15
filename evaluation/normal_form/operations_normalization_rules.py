@@ -4,9 +4,9 @@ import logging
 import networkx as nx
 from spacy.tokens.token import Token
 
-from scripts.qdmr_to_program import QDMROperation
-import scripts.qdmr_to_program as qdmr
-from evaluation.normal_form.normalization_rules import DecomposeRule, ReferenceToken, run_tests
+from break_evaluator.scripts.qdmr_to_program import QDMROperation
+import break_evaluator.scripts.qdmr_to_program as qdmr
+from break_evaluator.evaluation.normal_form.normalization_rules import DecomposeRule, ReferenceToken, run_tests
 
 _logger = logging.getLogger(__name__)
 

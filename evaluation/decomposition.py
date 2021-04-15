@@ -1,9 +1,10 @@
-
-import matplotlib.pyplot as plt
 import networkx as nx
 import re
+import matplotlib
+matplotlib.use('agg')
+import matplotlib.pyplot as plt
 
-from utils.graph import get_graph_levels
+from break_evaluator.utils.graph import get_graph_levels
 
 class Decomposition(object):
     def __init__(self, decomposition_list):

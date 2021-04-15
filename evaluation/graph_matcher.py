@@ -10,8 +10,8 @@ from multiprocessing import Pool
 from progressbar import ProgressBar, SimpleProgress
 from tqdm import tqdm
 
-from evaluation.sequence_matcher import SequenceMatchScorer
-from utils.timeout import exit_after
+from break_evaluator.evaluation.sequence_matcher import SequenceMatchScorer
+from break_evaluator.utils.timeout import exit_after
 
 
 class GraphMatchScorer(object):

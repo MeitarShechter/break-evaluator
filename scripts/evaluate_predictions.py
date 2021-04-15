@@ -11,12 +11,12 @@ import pandas as pd
 import json
 
 
-from evaluation.decomposition import Decomposition
-from evaluation.graph_matcher import GraphMatchScorer, get_ged_plus_scores
-from evaluation.sari_hook import get_sari
-from evaluation.sequence_matcher import SequenceMatchScorer
-from evaluation.normal_form.normalized_graph_matcher import NormalizedGraphMatchScorer
-import evaluation.normal_form.normalization_rules as norm_rules
+from break_evaluator.evaluation.decomposition import Decomposition
+from break_evaluator.evaluation.graph_matcher import GraphMatchScorer, get_ged_plus_scores
+from break_evaluator.evaluation.sari_hook import get_sari
+from break_evaluator.evaluation.sequence_matcher import SequenceMatchScorer
+from break_evaluator.evaluation.normal_form.normalized_graph_matcher import NormalizedGraphMatchScorer
+import break_evaluator.evaluation.normal_form.normalization_rules as norm_rules
 
 
 pd.set_option('display.max_colwidth', -1)
@@ -105,7 +105,7 @@ def evaluate(ids, questions, decompositions, golds, metadata,
     if output_path_base:
         write_evaluation_output(output_path_base, num_examples, **evaluation_dict)
         ### Addition write the mean scores json
-        write_evaluation_results(mean_scores)
+        write_evaluation_results(mean_scores, output_path_base)
 
     if metadata is not None:
         #metadata = metadata[metadata["question_text"].isin(evaluation_dict["question"])]
@@ -207,20 +207,20 @@ def print_score_stats(evaluation_dict):
 
 def write_evaluation_output(output_path_base, num_examples, **kwargs):
     # write evaluation summary
-    with open(output_path_base + '_summary.tsv', 'w') as fd:
+    with open(output_path_base + 'results_summary.tsv', 'w') as fd:
         fd.write('\t'.join([key for key in sorted(kwargs.keys())]) + '\n')
         for i in range(num_examples):
             fd.write('\t'.join([str(kwargs[key][i]) for key in sorted(kwargs.keys())]) + '\n')
 
     # write evaluation scores per example
     df = pd.DataFrame.from_dict(kwargs, orient="columns")
-    df.to_csv(output_path_base + '_full.tsv', sep='\t', index=False)
+    df.to_csv(output_path_base + 'results_full.tsv', sep='\t', index=False)
 	
 
-def write_evaluation_results(mean_scores):
+def write_evaluation_results(mean_scores, output_path_base):
     # write mean evaluation scores
 	# leaderboard results must be in results/metrics.json
-    with open('/results/metrics.json', 'w') as json_file:
+    with open(output_path_base + '/metrics.json', 'w') as json_file:
         json.dump(mean_scores, json_file)
 
 
